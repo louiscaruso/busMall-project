@@ -87,6 +87,7 @@ function eventHandler(e) {
   }
 
   renderImages();
+
   if (numberOfClicks === clicksAllowed) {
     imgElOne.removeEventListener('click', eventHandler);
     imgElTwo.removeEventListener('click', eventHandler);
@@ -97,6 +98,7 @@ function eventHandler(e) {
       console.log(`${imgArray[i].name}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`);
       section.appendChild(imageClickedAmount);
     }
+    renderCharts();
   }
 }
 
@@ -105,3 +107,48 @@ imgElTwo.addEventListener('click', eventHandler);
 imgElThree.addEventListener('click', eventHandler);
 
 renderImages();
+
+//chart script
+function renderCharts() {
+
+  var namesArray = [];
+  var viewsArray = [];
+  var clicksArray = [];
+
+  for (var i = 0; i < imgArray.length; i++) {
+    namesArray.push(imgArray[i].name);
+    viewsArray.push(imgArray[i].viewed);
+    clicksArray.push(imgArray[i].clicked);
+  }
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {//eslint-disable-line
+    type: 'bar',
+    data: {
+      labels: namesArray,
+      datasets: [{
+        label: '# of Clicks',
+        data: clicksArray,
+        backgroundColor: 'rgba(211, 204, 204, 0.973)',
+        borderColor:'rgba(0, 49, 211, 0.973)',
+        borderWidth: 1
+      },
+      {
+        label: '# of Views',
+        data: viewsArray,
+        backgroundColor: 'rgba(7, 44, 167)',
+        borderColor: 'rgba(0, 49, 211, 0.973)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
