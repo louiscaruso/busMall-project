@@ -5,7 +5,7 @@ var section = document.getElementById('results');
 var imgElOne = document.getElementById('image-one');
 var imgElTwo = document.getElementById('image-two');
 var imgElThree = document.getElementById('image-three');
-var clicksAllowed = 5;
+var clicksAllowed = 25;
 var numberOfClicks = 0;
 var renderArray = [];
 var imgArray = [];
@@ -145,7 +145,7 @@ function renderCharts() {
       datasets: [{
         label: '# of Clicks',
         data: clicksArray,
-        backgroundColor: 'rgba(211, 204, 204, 0.973)',
+        backgroundColor: 'rgb color: (75, 74, 74)',
         borderColor: 'rgba(0, 49, 211, 0.973)',
         borderWidth: 1
       },
