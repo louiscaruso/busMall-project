@@ -9,5 +9,7 @@ body {
 }
 
 img {
-  height: 350px;
+
+  display: inline;
+
 }
